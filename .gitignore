@@ -1,0 +1,7 @@
+# Build output from `node main.ts` (MAKEFUN_OUTPUT_DIR=out) — regenerated.
+out/
+# Dependencies, if any are ever added.
+node_modules/
+# Local clutter.
+*.log
+.DS_Store

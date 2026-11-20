@@ -1,0 +1,20 @@
+{
+  "shots": [
+    {
+      "file": "1-cover.jpg",
+      "note": "Exported cover: hero-plus-three layout, Vice Sunset grade, 1920x1080."
+    },
+    {
+      "file": "2-editor.jpg",
+      "note": "Editor in the browser with the sample photos loaded in the panels."
+    },
+    {
+      "file": "3-cover-portrait.jpg",
+      "note": "Exported cover: 2x2 grid layout, Neon Nights grade, 1080x1350."
+    },
+    {
+      "file": "4-cover-square.jpg",
+      "note": "Exported cover: full-bleed layout, Vice Sunset grade, 1080x1080."
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Vice Cover Studio — turn any photo and caption into GTA 6-style poster cover art, offline in your browser.">
+<title>Vice Cover Studio — GTA 6-style cover art maker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff2e7e'/%3E%3Ctext x='32' y='45' font-family='Arial Black, sans-serif' font-size='28' font-weight='900' text-anchor='middle' fill='%23ffffff'%3EVC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo" aria-hidden="true">VC</div>
+  <div class="brand">
+    <h1>Vice Cover Studio</h1>
+    <p>Turn your photo into GTA 6-style poster cover art — offline, in your browser.</p>
+  </div>
+  <button id="addPhotoBtn" class="add-btn" type="button">Add photo</button>
+</header>
+<main class="studio">
+  <section class="preview-card" aria-label="Cover preview">
+    <canvas id="stage" width="960" height="540" tabindex="0" aria-label="Cover preview. Click a panel to select it, drag to move its photo, scroll to zoom."></canvas>
+    <p class="hint">Click a panel to select it · drag to move the photo · scroll to zoom · arrow keys nudge</p>
+  </section>
+  <aside class="controls">
+    <section class="card" aria-labelledby="photosTitle">
+      <h2 id="photosTitle">Photos</h2>
+      <div class="row">
+        <button type="button" data-sample="boulevard">Boulevard sample</button>
+        <button type="button" data-sample="pier">Pier sample</button>
+        <button type="button" data-sample="portrait">Portrait sample</button>
+      </div>
+      <button id="fillAllBtn" type="button" class="wide">Fill every panel with this photo</button>
+      <p class="note">Your photos never leave your machine. Drag a file onto any panel to place it there.</p>
+    </section>
+    <section class="card" aria-labelledby="panelTitle">
+      <h2 id="panelTitle">Selected panel</h2>
+      <p id="panelLabel" class="panel-label">Panel 1 of 4 — hero</p>
+      <label for="zoomRange">Zoom</label>
+      <input id="zoomRange" type="range" min="1" max="3" step="0.01" value="1.05">
+      <label for="panXRange">Pan left / right</label>
+      <input id="panXRange" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      <label for="panYRange">Pan up / down</label>
+      <input id="panYRange" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      <div class="row">
+        <button id="resetCropBtn" type="button">Reset crop</button>
+        <button id="swapBtn" type="button">Swap with next panel</button>
+      </div>
+    </section>
+    <section class="card" aria-labelledby="captionTitle">
+      <h2 id="captionTitle">Caption</h2>
+      <label for="titleInput">Big title</label>
+      <input id="titleInput" type="text" value="VICE NIGHTS" maxlength="24" autocomplete="off">
+      <label for="subtitleInput">Subtitle</label>
+      <input id="subtitleInput" type="text" value="PALM CITY HEAT" maxlength="32" autocomplete="off">
+      <label for="taglineInput">Tagline</label>
+      <input id="taglineInput" type="text" value="ONE LAST SCORE" maxlength="40" autocomplete="off">
+    </section>
+    <section class="card" aria-labelledby="layoutTitle">
+      <h2 id="layoutTitle">Layout</h2>
+      <div class="row wrap" id="layoutGroup">
+        <button type="button" data-layout="hero" class="active">Hero + 3</button>
+        <button type="button" data-layout="grid">2 × 2 grid</button>
+        <button type="button" data-layout="bleed">Full bleed</button>
+        <button type="button" data-layout="tilted">Tilted snapshots</button>
+      </div>
+    </section>
+    <section class="card" aria-labelledby="gradeTitle">
+      <h2 id="gradeTitle">Grade</h2>
+      <div class="row wrap" id="gradeGroup">
+        <button type="button" data-grade="sunset" class="active">Vice Sunset</button>
+        <button type="button" data-grade="neon">Neon Nights</button>
+        <button type="button" data-grade="noir">Palm Noir</button>
+        <button type="button" data-grade="pastel">Pastel Vice</button>
+      </div>
+    </section>
+    <section class="card" aria-labelledby="exportTitle">
+      <h2 id="exportTitle">Export</h2>
+      <label for="sizeSelect">Post size</label>
+      <select id="sizeSelect">
+        <option value="1920x1080" selected>Wide · 1920 × 1080</option>
+        <option value="1080x1350">Portrait · 1080 × 1350</option>
+        <option value="1080x1080">Square · 1080 × 1080</option>
+      </select>
+      <button id="exportBtn" type="button" class="primary wide">Export PNG</button>
+      <p id="statusLine" class="status" role="status">Loading samples…</p>
+    </section>
+  </aside>
+</main>
+<input id="photoInput" type="file" accept="image/*" hidden>
+<script type="module" src="src/editor.js"></script>
+</body>
+</html>
